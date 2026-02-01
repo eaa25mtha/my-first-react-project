@@ -1,19 +1,31 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import './App.css'
 import Welcome from './components/Welcome';
 
 function App() {
-  const [users, setUsers] = useState([{name: "Mathilde", age: 22}]);
+  const [users, setUsers] = useState([]);
   console.log(users);
+
+  useEffect (() => {
+    //Fetch data from API
+    fetchUsers();
+  }, []);
+
+  async function fetchUsers() {
+    const response = await fetch(
+      "https://raw.githubusercontent.com/cederdorff/race/master/data/users.json"
+    );
+    const data = await response.json();
+    setUsers(data);
+  }
 
   return (
     <>
      <h1>My First React App</h1>
-     <Welcome name="Mathilde" age="22"/>
-     <Welcome name="Kim" age="50"/>
-     <Welcome name="Anne-Mette" age="58"/>
-     <Welcome name="Jonas" age="27"/>
-     <Welcome name="Noah" age="22"/>
+
+     {users.map(user => (
+      <Welcome key={user.id} name={user.name} mail={user.mail}/>
+     ))}
     </>
   );
 }

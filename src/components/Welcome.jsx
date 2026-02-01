@@ -1,8 +1,8 @@
-export default function Welcome({name, age}) {
+export default function Welcome({name, mail}) {
     return (
     <div>
         <h2>Hello, {name}</h2>
-        <p>You are {age} years old</p>
+        <p>Your email is {mail}</p>
     </div>
     );
 }
