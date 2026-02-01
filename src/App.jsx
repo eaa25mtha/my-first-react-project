@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import './App.css'
-import Welcome from './components/Welcome';
+import User from './components/User';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -20,13 +20,15 @@ function App() {
   }
 
   return (
-    <>
+    <main className="app">
      <h1>My First React App</h1>
 
-     {users.map(user => (
-      <Welcome key={user.id} name={user.name} mail={user.mail}/>
-     ))}
-    </>
+      <section className="grid">
+        {users.map(user => (
+          <User key={user.id} name={user.name} mail={user.mail} image={user.image}/>
+        ))}
+      </section>
+    </main>
   );
 }
 
